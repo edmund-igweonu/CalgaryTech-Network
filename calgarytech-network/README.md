@@ -36,6 +36,6 @@ This is a production-ready enterprise network design demonstrating CCNA-level co
 - **Console:** console123
 - **VTY:** vty123
 
-## Author
+## Author: Edmund Igweonu
 Network Engineer Candidate - Calgary, AB
 Designed for CCNA demonstration and enterprise deployment scenarios
