@@ -1,0 +1,239 @@
+Current configuration : 5458 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname Access-SW3
+!
+enable secret 5 $1$mERr$yvddgl7huWK0ZJEiBgkR20
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 0009.7CED.3ABC
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/2
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ switchport port-security mac-address sticky 0060.70A6.5E53
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/3
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/4
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/5
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/6
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/7
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/8
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/9
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/10
+ description Finance-Department
+ switchport access vlan 30
+ switchport mode access
+ switchport port-security
+ switchport port-security mac-address sticky 
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface FastEthernet0/11
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/13
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description HR-Department
+ switchport access vlan 40
+ switchport mode access
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ description VoIP-Phones
+ switchport access vlan 70
+ switchport mode access
+!
+interface FastEthernet0/20
+ description VoIP-Phones
+ switchport access vlan 70
+ switchport mode access
+!
+interface FastEthernet0/21
+ description VoIP-Phones
+ switchport access vlan 70
+ switchport mode access
+!
+interface FastEthernet0/22
+ description VoIP-Phones
+ switchport access vlan 70
+ switchport mode access
+!
+interface FastEthernet0/23
+ description Guest-WiFi-AP
+ switchport access vlan 80
+ switchport mode access
+!
+interface FastEthernet0/24
+!
+interface GigabitEthernet0/1
+ description Uplink-to-Dist-SW2
+ switchport trunk allowed vlan 30,40,70,80,99
+ switchport mode trunk
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 10.10.99.23 255.255.255.0
+!
+ip default-gateway 10.10.99.1
+!
+banner motd ^C
+***************************************************
+*  ACCESS-SW3 - Floor 3 Finance/HR                *
+***************************************************
+^C
+!
+!
+!
+line con 0
+ password 7 082243401A16091243595F
+ login
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end

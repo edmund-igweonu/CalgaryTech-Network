@@ -1,0 +1,174 @@
+Current configuration : 3239 bytes
+!
+version 15.0
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname Branch-SW
+!
+enable secret 5 $1$mERr$oeZzqZJpm/Cr6Y/LPd2O70
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+interface FastEthernet0/1
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/2
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/3
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/4
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/5
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/6
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/7
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/8
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/9
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/10
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/11
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/12
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/13
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/14
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/15
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/16
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/17
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/18
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/19
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/20
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/21
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/22
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/23
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface FastEthernet0/24
+ description Branch-Users
+ switchport mode access
+ spanning-tree portfast
+!
+interface GigabitEthernet0/1
+ description Uplink-to-Branch-R2
+!
+interface GigabitEthernet0/2
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan99
+ ip address 10.20.0.10 255.255.255.0
+!
+ip default-gateway 10.20.0.1
+!
+banner motd ^C
+***************************************************
+*  BRANCH-SW - Branch Office Access               *
+***************************************************
+^C
+!
+!
+!
+line con 0
+ password 7 082243401A16091243595F
+ login
+!
+line vty 0 4
+ login
+line vty 5 15
+ login
+!
+!
+!
+!
+end

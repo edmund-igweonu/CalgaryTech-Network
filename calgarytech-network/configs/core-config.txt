@@ -1,0 +1,234 @@
+Current configuration : 4533 bytes
+!
+version 16.3.2
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname Core-1
+!
+!
+no profinet
+enable secret 5 $1$mERr$5.a6P4JqbNiMX01usIfka/
+!
+!
+ip dhcp excluded-address 10.10.10.1 10.10.10.10
+ip dhcp excluded-address 10.10.20.1 10.10.20.10
+ip dhcp excluded-address 10.10.30.1 10.10.30.10
+ip dhcp excluded-address 10.10.40.1 10.10.40.10
+ip dhcp excluded-address 10.10.80.1 10.10.80.10
+!
+ip dhcp pool ENGINEERING
+ network 10.10.20.0 255.255.255.0
+ default-router 10.10.20.1
+ dns-server 8.8.8.8
+ip dhcp pool FINANCE
+ network 10.10.30.0 255.255.255.0
+ default-router 10.10.30.1
+ dns-server 8.8.8.8
+ip dhcp pool HR
+ network 10.10.40.0 255.255.255.0
+ default-router 10.10.40.1
+ dns-server 8.8.8.8
+ip dhcp pool GUEST
+ network 10.10.80.0 255.255.255.0
+ default-router 10.10.80.1
+ dns-server 8.8.8.8
+ip dhcp pool SALES
+ network 10.10.10.0 255.255.255.0
+ default-router 10.10.10.1
+ dns-server 8.8.8.8
+!
+!
+!
+no ip cef
+ip routing
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet1/0/1
+ description Uplink-to-Edge-Router
+ no switchport
+ ip address 192.168.1.1 255.255.255.252
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet1/0/2
+ description Trunk-to-Dist-Switches
+ switchport trunk allowed vlan 10,20,30,40,50,60,70,80,90,99
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ description Trunk-to-Dist-Switches
+ switchport trunk allowed vlan 30,40,50,70,80,90,99
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/4
+!
+interface GigabitEthernet1/0/5
+!
+interface GigabitEthernet1/0/6
+!
+interface GigabitEthernet1/0/7
+!
+interface GigabitEthernet1/0/8
+!
+interface GigabitEthernet1/0/9
+!
+interface GigabitEthernet1/0/10
+!
+interface GigabitEthernet1/0/11
+!
+interface GigabitEthernet1/0/12
+!
+interface GigabitEthernet1/0/13
+!
+interface GigabitEthernet1/0/14
+!
+interface GigabitEthernet1/0/15
+!
+interface GigabitEthernet1/0/16
+!
+interface GigabitEthernet1/0/17
+!
+interface GigabitEthernet1/0/18
+!
+interface GigabitEthernet1/0/19
+!
+interface GigabitEthernet1/0/20
+!
+interface GigabitEthernet1/0/21
+!
+interface GigabitEthernet1/0/22
+!
+interface GigabitEthernet1/0/23
+!
+interface GigabitEthernet1/0/24
+!
+interface GigabitEthernet1/1/1
+!
+interface GigabitEthernet1/1/2
+!
+interface GigabitEthernet1/1/3
+!
+interface GigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan10
+ description Sales-Gateway
+ mac-address 0002.1725.c301
+ ip address 10.10.10.1 255.255.255.0
+!
+interface Vlan20
+ description Engineering-Gateway
+ mac-address 0002.1725.c302
+ ip address 10.10.20.1 255.255.255.0
+!
+interface Vlan30
+ description Finance-Gateway
+ mac-address 0002.1725.c303
+ ip address 10.10.30.1 255.255.255.0
+!
+interface Vlan40
+ description HR-Gateway
+ mac-address 0002.1725.c304
+ ip address 10.10.40.1 255.255.255.0
+!
+interface Vlan50
+ description Servers-Gateway
+ mac-address 0002.1725.c305
+ ip address 10.10.50.1 255.255.255.0
+!
+interface Vlan60
+ description Printers-Gateway
+ mac-address 0002.1725.c306
+ ip address 10.10.60.1 255.255.255.0
+!
+interface Vlan70
+ description VoIP-Gateway
+ mac-address 0002.1725.c307
+ ip address 10.10.70.1 255.255.255.0
+!
+interface Vlan80
+ description Guest-WiFi-Gateway
+ mac-address 0002.1725.c308
+ ip address 10.10.80.1 255.255.255.0
+!
+interface Vlan90
+ description IoT-Gateway
+ mac-address 0002.1725.c309
+ ip address 10.10.90.1 255.255.255.0
+!
+interface Vlan99
+ description Management
+ mac-address 0002.1725.c30a
+ ip address 10.10.99.2 255.255.255.0
+!
+ip classless
+ip route 0.0.0.0 0.0.0.0 192.168.1.2 
+!
+ip flow-export version 9
+!
+!
+ip access-list extended GUEST-RESTRICT
+ deny ip 10.10.80.0 0.0.0.255 10.10.10.0 0.0.0.255
+ deny ip 10.10.80.0 0.0.0.255 10.10.20.0 0.0.0.255
+ deny ip 10.10.80.0 0.0.0.255 10.10.30.0 0.0.0.255
+ deny ip 10.10.80.0 0.0.0.255 10.10.40.0 0.0.0.255
+ deny ip 10.10.80.0 0.0.0.255 10.10.50.0 0.0.0.255
+ permit ip any any
+ip access-list extended FINANCE-RESTRICT
+ permit ip 10.10.30.0 0.0.0.255 10.10.50.0 0.0.0.255
+ permit ip 10.10.30.0 0.0.0.255 10.10.60.0 0.0.0.255
+ deny ip 10.10.30.0 0.0.0.255 10.10.0.0 0.0.255.255
+ permit ip any any
+!
+banner motd ^C
+***************************************************
+*  CORE-1 - Calgary Technology Services           *
+*  Unauthorized access prohibited                 *
+***************************************************^C
+!
+!
+!
+!
+line con 0
+ password 7 082243401A16091243595F
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 08375857584B56
+ login
+line vty 5 15
+ password 7 08375857584B56
+ login
+!
+!
+!
+!
+end

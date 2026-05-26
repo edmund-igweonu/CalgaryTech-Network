@@ -1,0 +1,114 @@
+Current configuration : 1690 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1-Edge
+!
+!
+!
+enable secret 5 $1$mERr$772Br0GxgOT.wQxvg2/IP1
+!
+!
+!
+!
+!
+!
+no ip cef
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ description WAN-to-ISP
+ ip address 203.0.113.1 255.255.255.252
+ ip nat outside
+ ip access-group OUTSIDE-IN in
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/1
+ description LAN-to-Core
+ ip address 192.168.1.2 255.255.255.252
+ ip nat inside
+ duplex auto
+ speed auto
+!
+interface GigabitEthernet0/0/2
+ no ip address
+ duplex auto
+ speed auto
+ shutdown
+!
+interface Serial0/1/0
+ description WAN-to-Branch
+ ip address 172.16.1.1 255.255.255.252
+ clock rate 128000
+!
+interface Serial0/1/1
+ no ip address
+ clock rate 2000000
+ shutdown
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+ip nat inside source list 1 interface GigabitEthernet0/0/0 overload
+ip classless
+ip route 10.10.0.0 255.255.0.0 192.168.1.1 
+ip route 10.20.0.0 255.255.255.0 172.16.1.2 
+ip route 0.0.0.0 0.0.0.0 203.0.113.2 
+!
+ip flow-export version 9
+!
+!
+access-list 1 permit 10.10.0.0 0.0.255.255
+access-list 1 permit 10.20.0.0 0.0.255.255
+ip access-list extended OUTSIDE-IN
+ permit icmp any any echo-reply
+ permit tcp any any established
+!
+banner motd ^C
+***************************************************
+*  EDGE ROUTER - Perimeter Security               *
+*  All traffic monitored                          *
+***************************************************
+^C
+!
+!
+!
+!
+line con 0
+ password 7 082243401A16091243595F
+ login
+!
+line aux 0
+!
+line vty 0 4
+ password 7 08375857584B56
+ login
+!
+!
+!
+end
